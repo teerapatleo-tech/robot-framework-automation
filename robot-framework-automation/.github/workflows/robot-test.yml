@@ -23,9 +23,14 @@ jobs:
         run: |
           pip install robotframework
           pip install robotframework-requests
-          pip install robotframework-seleniumlibrary
 
       - name: Run API Tests
+        env:
+          AUTH_URL: ${{ secrets.AUTH_URL }}
+          API_URL: ${{ secrets.API_URL }}
+          ORG_NAME: ${{ secrets.ORG_NAME }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           robot --outputdir results/ tests/api/
 
